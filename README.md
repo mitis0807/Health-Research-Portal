@@ -38,14 +38,6 @@ for production we use production.js file
 
 [sails](https://sailsjs.com/)
 
-## Contributing
 
-https://bitbucket.org/wishtree_plokhande/profile/teams
 
-## Authors
 
-See also the list of [contributors] (https://bitbucket.org/wishtreewhohrp/fiji-hrp/src/master/) who participated in this project.
-
-## License
-
-This project is licensed under the Wishtree License develop for Fiji HRP.
