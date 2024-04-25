@@ -1,0 +1,3373 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "MoH Fiji Health Research Portal"
+  },
+  "host": "localhost:1340",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "APIs"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/registration": {
+      "x-swagger-router-controller": "investigator",
+      "post": {
+        "tags": ["APIs"],
+        "description": "register the investigator",
+        "summary": "Register Investigator",
+        "operationId": "register",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "Created investigator object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Registration"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Registration"
+            }
+          },
+          "300": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/logout": {
+      "post": {
+        "tags": ["APIs"],
+        "summary": "Logout User",
+        "description": "Logout api",
+        "produces": ["application/json"],
+        "responses": {
+          "default": {
+            "description": "default response Logout successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Logout successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/processLogin": {
+      "post": {
+        "tags": ["APIs"],
+        "summary": "Login Investigator",
+        "description": "Login api",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Login user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response User Created successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Login successfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submitProposal": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/submitProposalData"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"8e74fce0-be1e-11eb-91a4-3d6dd8976cdd\",\"researchTitle\":\"kj\",\"relevanceToFijiContext\":\"Unclear\",\"relevanceToFijiContextcomment\":\"eda\",\"contributeToNewGeneralizableKnowledge\":\"Not Sure\",\"contributeToNewGeneralizableKnowledgecomment\":\"qweqw\",\"problemStatement\":\"bjb\",\"rationaleOfTheStudy\":\"kbk\",\"studyBenefits\":\"bnjk\",\"researchQuestionAimHypothesisEse\":\"n j\",\"objectives\":\" hg\",\"reviewOfLiterature\":\"jnbjkbnj\",\"studyDesign\":\"njkbn\",\"studySetting\":\"jknbjkn\",\"studyPopulationOrSample\":\"guyg\",\"selectionOfParticipants\":\"uui\",\"samplingSampleSizeAndPowerOfStudy\":\"yt\",\"participantsRecruitmentMethod\":\"tyd\",\"dataCollectionTechniquesAndInstruments\":\"hjn\",\"culturalSensitivity\":\"jkhn\",\"reliabilityAndValidityOfMethodsAndTools\":\"jkhjkhj\",\"dataManagement\":\"khjk\",\"dataStorage\":\"nh\",\"dataAnalysisPlan\":\"kjjk\",\"pretestOrPilotStudy\":\"jkhjk\",\"confidentiality\":\"jkhkjbh\",\"privacy\":\"khbkbbkj\",\"voluntaryInformedConsent\":\"nhj\",\"provisionOfDebriefing\":\"jhghjgj\",\"anticipatedRisks\":\"hjvj\",\"timelinesOrGanttChart\":\"hgfgh\",\"activitiesEquipmentPersonnel\":\"adfsa\",\"sourceOfFunds\":\"njk\",\"administrationMonitoringUtilization\":\"hnkn\",\"references\":\"nnk\",\"dataCollectionForm\":\"jhvhjv\",\"secondaryDataForm\":\"jhbghjb\",\"informationStatements\":\"hjbjhbh\",\"consentForms\":\"jbhjb\",\"thirdPartyConsent\":\"hj\",\"assentForms\":\"hjvhj\",\"translatedVersions\":\"hjvhj\",\"facilityApprovals\":\"vjv\",\"otherCountryResearchEthicsApprovals\":\"jhjb\",\"generalComments\":\"hjb\",\"recommendation\":\"h\",\"selectAppropriate\":\"Fully Endorsed: No Changes Required\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/submitProposal"
+            }
+          }
+        }
+      }
+    },
+    "/getAllProposal": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getProposal": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"eb6e85e0-b3df-11eb-9203-21335d7d515e\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getInvestigatorProposals": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/isAuthenticated": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response",
+            "schema": {
+              "$ref": "#/definitions/UserData"
+            }
+          }
+        }
+      }
+    },
+    "/markCompleteProposal": {
+      "post": {
+        "consumes": ["application/json"],
+        "tags": ["APIs"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/MarkComplete"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"3c1447b0-a8ae-11eb-b322-3d43d1912b11\", \"commentForMarkComplete\":\"dddddddd\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ProposalData"
+            }
+          }
+        }
+      }
+    },
+    "/markInCompleteProposal": {
+      "post": {
+        "consumes": ["application/json"],
+        "tags": ["APIs"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/MarkIncomplete"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"3c1447b0-a8ae-11eb-b322-3d43d1912b11\", \"commentForMarkInComplete\":\"dddddddd\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ProposalData"
+            }
+          }
+        }
+      }
+    },
+    "/getProposalExpectInvestigator": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getResearchForView": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getResearchForViewWithAuth": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getProposalForView": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"3c1447b0-a8ae-11eb-b322-3d43d1912b11\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/deleteProposal": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getAllProposalResearchForCoordinator": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "APIs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getAllResearchForCoordinator": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getAllResearchForCoordinatorWithAuth": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getAllResearchForInvestigator": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getAllProposalForSign": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [],
+        "tags": ["APIs"],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/markProposalAsResearch": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"eb6e85e0-b3df-11eb-9203-21335d7d515e\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/markProposalUnderSigned": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/responseByReviewer": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ResponseByReviewer"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\",\"comment\":\"ddddd\",\"response\":\"dddddd\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InternalUser"
+            }
+          }
+        }
+      }
+    },
+    "/rejectProposalByCoordinatorAfterReview": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RejectProposalAfterReview"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\",\"rejectionComment\":\"ddddd\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/deleteCommiteeMember": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DeleteCommitteMember"
+            },
+            "x-examples": {
+              "application/json": "{\"committeeMemberId\":[\"608974ffdab3c40037288e6f\"]}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DeleteCommitteeMemberResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getAllExternalReviewer": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ExternalReviewerData"
+            }
+          }
+        }
+      }
+    },
+    "/getAllCommitteeMember": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CommitteMember"
+            }
+          }
+        }
+      }
+    },
+    "/getAllInternalReviewer": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getReviewForm": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalID\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getInternalUsersExceptCordinator": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalID\":\"aebaa950-a82f-11eb-9d98-f71fd3016092\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/universityUsers/1": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UniversityUserWithPagination"
+            }
+          }
+        }
+      }
+    },
+    "/getAllProposalForReviewer": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/checkCoordinatorChairPresent": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CoordinatorChairPresent"
+            }
+          }
+        }
+      }
+    },
+    "/addCommittee": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AddCommittee"
+            },
+            "x-examples": {
+              "application/json": "{\"internalUserIds\":[\"608974ffdab3c40037288e6f\"]}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InternalUser"
+            }
+          }
+        }
+      }
+    },
+    "/resetPassword": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ResetPassword"
+            },
+            "x-examples": {
+              "application/json": "{\"userId\":\"60ab7556e75e8c003d3e7f75\",\"currentPassword\":\"123456\",\"password\":\"123456\",\"confirmPassword\":\"123456\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/resetPasswordWithAuth": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ResetPassword"
+            },
+            "x-examples": {
+              "application/json": "{\"userId\":\"60ab7556e75e8c003d3e7f75\",\"currentPassword\":\"123456\",\"password\":\"123456\",\"confirmPassword\":\"123456\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/setPassword": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            },
+            "x-examples": {
+              "application/json": "{\"id\":\"60ab7556e75e8c003d3e7f75\",\"password\":\"123456\",\"confirmPassword\":\"123456\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/confirmAccount": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InternalUserId"
+            },
+            "x-examples": {
+              "application/json": "{\"internalUserId\":\"60ab7556e75e8c003d3e7f75\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InternalUser"
+            }
+          }
+        }
+      }
+    },
+    "/sendInvite": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Invite"
+            },
+            "x-examples": {
+              "application/json": "{\"firstName\":\"kjh\",\"lastName\":\"hjkhn\",\"email\":\"internal12@yopmail.com\",\"role\":3}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/updateInternalUser": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InternalUser"
+            },
+            "x-examples": {
+              "application/json": "{\"data\":{\"salutation\":\"Dr\",\"firstName\":\"kjh\",\"lastName\":\"hjkhn\",\"email\":\"internal1@yopmail.com\",\"jobTitle\":\"wd\",\"highestQualification\":\"sad\",\"department\":\"abc\",\"organization\":\"dfsf\",\"principleField\":\"dsfs\",\"nationality\":\"AO\",\"targetArticles\":\"dsf\",\"id\":\"60a779135c116400537049c6\",\"isProfileComplete\":true,\"chairSign\":\"\"}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InternalUser"
+            }
+          }
+        }
+      }
+    },
+    "/getInternalUser": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InternalUserId"
+            },
+            "x-examples": {
+              "application/json": "{\"internalUserId\":\"60a779445c116400537049c8\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InternalUser"
+            }
+          }
+        }
+      }
+    },
+    "/getInternalUserWithAuth": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InternalUserId"
+            },
+            "x-examples": {
+              "application/json": "{\"internalUserId\":\"60a779445c116400537049c8\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InternalUser"
+            }
+          }
+        }
+      }
+    },
+    "/deleteInternalUser": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InternalUserId"
+            },
+            "x-examples": {
+              "application/json": "{\"internalUserId\":\"609ab144d7c6d00056d9a90a\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getAllInternalUser": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InterUserWithSearchPagination"
+            },
+            "x-examples": {
+              "application/json": "{\"pageNo\":1,\"limit\":10,\"search\":\"\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/deleteInvestigator": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InvestigatorId"
+            },
+            "x-examples": {
+              "application/json": "{\"investigatorId\":\"60ab3eb491fd99004f067ae9\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getAllInvestigator": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InvestigatorData"
+            }
+          }
+        }
+      }
+    },
+    "/setInvestigatorPassword": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            },
+            "x-examples": {
+              "application/json": "{\"id\":\"60ab3eb491fd99004f067ae9\",\"password\":\"123456\",\"confirmPassword\":\"123456\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/investigatorconfirmAccount": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InternalUserId"
+            },
+            "x-examples": {
+              "application/json": "{\"internalUserId\":\"60ab3eb491fd99004f067ae9\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InvestigatorData"
+            }
+          }
+        }
+      }
+    },
+    "/updateInvestigator": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InvestigatorData"
+            },
+            "x-examples": {
+              "application/json": "{\"data\":{\"prefix\":\"86\",\"salutation\":\"Dr\",\"gender\":\"1\",\"firstName\":\"Investigator\",\"middleName\":\"DM\",\"lastName\":\"Makkar\",\"email\":\"investigator@yopmail.com\",\"phoneNumber\":4567878788,\"affilation\":\"xyz\",\"nationality\":\"AD\",\"malingAddress\":\"ins@yopmail.com\",\"id\":\"6089725ed2d844003ed4953f\",\"isProfileComplete\":true}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InvestigatorData"
+            }
+          }
+        }
+      }
+    },
+    "/getInvestigator": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InvestigatorId"
+            },
+            "x-examples": {
+              "application/json": "{\"investigatorId\":\"6089725ed2d844003ed4953f\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InvestigatorData"
+            }
+          }
+        }
+      }
+    },
+    "/getInvestigatorWithAuth": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InvestigatorId"
+            },
+            "x-examples": {
+              "application/json": "{\"investigatorId\":\"6089725ed2d844003ed4953f\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InvestigatorData"
+            }
+          }
+        }
+      }
+    },
+    "/trackDataRequest": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "name": "docketNo",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "x-example": "00003-5-2021"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataRequestResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reportForCoordinator/1702e020-b31d-11eb-b2c6-0951d25abf37/0": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [],
+        "tags": ["APIs"],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ReportURL"
+            }
+          }
+        }
+      }
+    },
+    "/requestTermExtension": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TermExtension"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"1702e020-b31d-11eb-b2c6-0951d25abf37\",\"extensionComment\":\"abc\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/withdrawProposal": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Withdraw"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"88af67c0-a832-11eb-b30a-6b06be6a5977\",\"withdrawComment\":\"abc\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/WithdrawProposal"
+            }
+          }
+        }
+      }
+    },
+    "/investigatorHistory/88af67c0-a832-11eb-b30a-6b06be6a5977": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [],
+        "tags": ["APIs"],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InvestigatorHistory"
+            }
+          }
+        }
+      }
+    },
+    "/contactUs": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ContactUs"
+            },
+            "x-examples": {
+              "application/json": "{\"firstName\":\"abc\",\"lastName\":\"abc\",\"email\":\"abc@yopmail.com\",\"requestType\":\"general\",\"message\":\"abc\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ContactUsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/searchAnnouncements/swagger": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [],
+        "tags": ["APIs"],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Announcement"
+            }
+          }
+        }
+      }
+    },
+    "/researches/klj": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/proposals/hjk": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/history/88af67c0-a832-11eb-b30a-6b06be6a5977": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TimelineHistory"
+            }
+          }
+        }
+      }
+    },
+    "/rejectProposalByCoordinator/88af67c0-a832-11eb-b30a-6b06be6a5977": {
+      "patch": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/announcements/9cf99be1-4a28-4227-b89b-c281c11a5bd7": {
+      "delete": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Announcement"
+            },
+            "x-examples": {
+              "application/json": "{\"data\":{\"title\":\"swagger\",\"content\":\"swagger\"}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/activeAnnouncements/1": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ActiveAnnouncementsWithPagination"
+            }
+          }
+        }
+      }
+    },
+    "/announcementsById/9cf99be1-4a28-4227-b89b-c281c11a5bd7": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Announcement"
+            }
+          }
+        }
+      }
+    },
+    "/announcementsByIdWithAuth/9cf99be1-4a28-4227-b89b-c281c11a5bd7": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Announcement"
+            }
+          }
+        }
+      }
+    },
+    "/announcements/1": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [],
+        "tags": ["APIs"],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TotalAnnouncements"
+            }
+          }
+        }
+      }
+    },
+    "/announcements/e486d23a-c12e-4a9b-9d91-43acc1e3d601": {
+      "patch": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Announcement"
+            }
+          }
+        }
+      }
+    },
+    "/announcements": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AnnouncementData"
+            },
+            "x-examples": {
+              "application/json": "{\"data\":{\"title\":\"swagger\",\"content\":\"swagger\"}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Announcement"
+            }
+          }
+        }
+      }
+    },
+    "/saveReportType": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"88af67c0-a832-11eb-b30a-6b06be6a5977\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/uploadApplicationDocument": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ProposalId"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"88af67c0-a832-11eb-b30a-6b06be6a5977\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getForgotPasswordLinkStatus": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Id"
+            },
+            "x-examples": {
+              "application/json": "{\"id\":\"60a780a65c116400537049de\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/assignReviewersToProposal": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AssignReviewers"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"517dcfd0-be21-11eb-91a4-3d6dd8976cdd\",\"data\":[{\"role\":3,\"id\":\"608974ffdab3c40037288e6f\",\"firstName\":\"IR\",\"lastName\":\"IR\",\"email\":\"ir1@yopmail.com\"},{\"role\":3,\"id\":\"60a4c98d61500e003ff126db\",\"firstName\":\"DM\",\"lastName\":\"fdv\",\"email\":\"internal@yopmail.com\"}]}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/assignReviewType": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReviewType"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"517dcfd0-be21-11eb-91a4-3d6dd8976cdd\",\"reviewType\":\"Expedited_Review\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          }
+        }
+      }
+    },
+    "/submitReview": {
+      "post": {
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReviewFormData"
+            },
+            "x-examples": {
+              "application/json": "{\"proposalId\":\"8e74fce0-be1e-11eb-91a4-3d6dd8976cdd\",\"researchTitle\":\"kj\",\"relevanceToFijiContext\":\"Unclear\",\"relevanceToFijiContextcomment\":\"eda\",\"contributeToNewGeneralizableKnowledge\":\"Not Sure\",\"contributeToNewGeneralizableKnowledgecomment\":\"qweqw\",\"problemStatement\":\"bjb\",\"rationaleOfTheStudy\":\"kbk\",\"studyBenefits\":\"bnjk\",\"researchQuestionAimHypothesisEse\":\"n j\",\"objectives\":\" hg\",\"reviewOfLiterature\":\"jnbjkbnj\",\"studyDesign\":\"njkbn\",\"studySetting\":\"jknbjkn\",\"studyPopulationOrSample\":\"guyg\",\"selectionOfParticipants\":\"uui\",\"samplingSampleSizeAndPowerOfStudy\":\"yt\",\"participantsRecruitmentMethod\":\"tyd\",\"dataCollectionTechniquesAndInstruments\":\"hjn\",\"culturalSensitivity\":\"jkhn\",\"reliabilityAndValidityOfMethodsAndTools\":\"jkhjkhj\",\"dataManagement\":\"khjk\",\"dataStorage\":\"nh\",\"dataAnalysisPlan\":\"kjjk\",\"pretestOrPilotStudy\":\"jkhjk\",\"confidentiality\":\"jkhkjbh\",\"privacy\":\"khbkbbkj\",\"voluntaryInformedConsent\":\"nhj\",\"provisionOfDebriefing\":\"jhghjgj\",\"anticipatedRisks\":\"hjvj\",\"timelinesOrGanttChart\":\"hgfgh\",\"activitiesEquipmentPersonnel\":\"adfsa\",\"sourceOfFunds\":\"njk\",\"administrationMonitoringUtilization\":\"hnkn\",\"references\":\"nnk\",\"dataCollectionForm\":\"jhvhjv\",\"secondaryDataForm\":\"jhbghjb\",\"informationStatements\":\"hjbjhbh\",\"consentForms\":\"jbhjb\",\"thirdPartyConsent\":\"hj\",\"assentForms\":\"hjvhj\",\"translatedVersions\":\"hjvhj\",\"facilityApprovals\":\"vjv\",\"otherCountryResearchEthicsApprovals\":\"jhjb\",\"generalComments\":\"hjb\",\"recommendation\":\"h\",\"selectAppropriate\":\"Fully Endorsed: No Changes Required\"}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ReviewForm"
+            }
+          }
+        }
+      }
+    },
+    "/generateForgotPasswordLink": {
+      "post": {
+        "consumes": ["application/json"],
+        "tags": ["APIs"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Email"
+            },
+            "x-examples": {
+              "application/json": "{\"email\":\"investigator@yopmail.com\"}"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ErrorResponse": {
+      "required": ["message"],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "submitProposalData": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "background": {
+          "type": "string"
+        },
+        "objectives": {
+          "type": "string"
+        },
+        "studyMethods": {
+          "type": "string"
+        },
+        "expectedOutcomes": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "string"
+        },
+        "isProposal": {
+          "type": "boolean"
+        },
+        "investigatorId": {
+          "type": "string"
+        },
+        "isSubmitted": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "timeline": {
+          "type": "object"
+        },
+        "coinvestigator": {
+          "type": "object"
+        },
+        "dataCollection": {
+          "type": "string"
+        },"endDate": {
+          "type": "string"
+        },"humanSubjects": {
+          "type": "boolean"
+        },"keyInstitution": {
+          "type": "string"
+        },"multiCountryResearch": {
+          "type": "boolean"
+        },"nationWideResearch": {
+          "type": "boolean"
+        },"otherCommitte": {
+          "type": "boolean"
+        },"otherResearchForm": {
+          "type": "string"
+        },"primarySuperviser": {
+          "type": "object"
+        },"researchDomain": {
+          "type": "string"
+        },"researchField": {
+          "type": "string"
+        },"startAndEndDate": {
+          "type": "object"
+        },"startDate": {
+          "type": "string"
+        },"studentResearch": {
+          "type": "boolean"
+        },"amount": {
+          "type": "string"
+        },"fiji": {
+          "type": "string"
+        },"source": {
+          "type": "string"
+        },"age": {
+          "type": "boolean"
+        },"anyTest": {
+          "type": "boolean"
+        },
+        "biologicalSamples": {
+          "type": "boolean"
+        },"biosafeIssue": {
+          "type": "boolean"
+        },"dependentRelation": {
+          "type": "boolean"
+        },"distress": {
+          "type": "boolean"
+        },"humanGenetic": {
+          "type": "boolean"
+        },"identity": {
+          "type": "boolean"
+        },"inducements": {
+          "type": "boolean"
+        },"ionizationRadiation": {
+          "type": "boolean"
+        },"mentalImpairment": {
+          "type": "boolean"
+        },"minorityGroup": {
+          "type": "boolean"
+        },"pregnant": {
+          "type": "boolean"
+        },"reproductiveTech": {
+          "type": "boolean"
+        },"sensitiveInfo": {
+          "type": "boolean"
+        },
+        "stemCell": {
+          "type": "boolean"
+        },"benefits": {
+          "type": "object"
+        },"conflict": {
+          "type": "boolean"
+        },"levelRisk": {
+          "type": "string"
+        },"multiInstitution": {
+          "type": "boolean"
+        },"riskApply": {
+          "type": "string"
+        },"curriculumVitae": {
+          "type": "object"
+        },"summary": {
+          "type": "object"
+        },
+        "commentForMarkComplete":{
+          "type": "string"
+        },"isComplete": {
+          "type": "boolean"
+        },"fullReviewEndDate": {
+          "type": "string"
+        },"isUnderReview": {
+          "type": "boolean"
+        },"reviewType": {
+          "type": "integer"
+        },"assignedReviewers": {
+          "type": "object"
+        }
+      }
+    },
+    "submitProposal": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "proposalData": {
+          "$ref": "#/definitions/submitProposalData"
+        }
+      }
+    },
+    "ReviewFormData": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "researchTitle": {
+          "type": "string"
+        },
+        "relevanceToFijiContext": {
+          "type": "string"
+        },
+        "relevanceToFijiContextcomment": {
+          "type": "string"
+        },
+        "contributeToNewGeneralizableKnowledge": {
+          "type": "string"
+        },
+        "contributeToNewGeneralizableKnowledgecomment": {
+          "type": "string"
+        },
+        "problemStatement": {
+          "type": "string"
+        },
+        "rationaleOfTheStudy": {
+          "type": "string"
+        },
+        "studyBenefits": {
+          "type": "string"
+        },
+        "researchQuestionAimHypothesisEse": {
+          "type": "string"
+        },
+        "objectives": {
+          "type": "string"
+        },
+        "reviewOfLiterature": {
+          "type": "string"
+        },
+        "studyDesign": {
+          "type": "string"
+        },
+        "studySetting": {
+          "type": "string"
+        },
+        "studyPopulationOrSample": {
+          "type": "string"
+        },
+        "selectionOfParticipants": {
+          "type": "string"
+        },
+        "samplingSampleSizeAndPowerOfStudy": {
+          "type": "string"
+        },
+        "participantsRecruitmentMethod": {
+          "type": "string"
+        },
+        "dataCollectionTechniquesAndInstruments": {
+          "type": "string"
+        },
+        "culturalSensitivity": {
+          "type": "string"
+        },
+        "reliabilityAndValidityOfMethodsAndTools": {
+          "type": "string"
+        },
+        "dataManagement": {
+          "type": "string"
+        },
+        "dataStorage": {
+          "type": "string"
+        },
+        "dataAnalysisPlan": {
+          "type": "string"
+        },
+        "pretestOrPilotStudy": {
+          "type": "string"
+        },
+        "confidentiality": {
+          "type": "string"
+        },
+        "privacy": {
+          "type": "string"
+        },
+        "voluntaryInformedConsent": {
+          "type": "string"
+        },
+        "provisionOfDebriefing": {
+          "type": "string"
+        },
+        "anticipatedRisks": {
+          "type": "string"
+        },
+        "timelinesOrGanttChart": {
+          "type": "string"
+        },
+        "activitiesEquipmentPersonnel": {
+          "type": "string"
+        },
+        "sourceOfFunds": {
+          "type": "string"
+        },
+        "administrationMonitoringUtilization": {
+          "type": "string"
+        },
+        "references": {
+          "type": "string"
+        },
+        "dataCollectionForm": {
+          "type": "string"
+        },
+        "secondaryDataForm": {
+          "type": "string"
+        },
+        "informationStatements": {
+          "type": "string"
+        },
+        "consentForms": {
+          "type": "string"
+        },
+        "thirdPartyConsent": {
+          "type": "string"
+        },
+        "assentForms": {
+          "type": "string"
+        },
+        "translatedVersions": {
+          "type": "string"
+        },
+        "facilityApprovals": {
+          "type": "string"
+        },
+        "otherCountryResearchEthicsApprovals": {
+          "type": "string"
+        },
+        "generalComments": {
+          "type": "string"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "selectAppropriate": {
+          "type": "string"
+        }
+      }
+    },
+    "ReviewForm": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "reviewData": {
+          "$ref": "#/definitions/ReviewFormData"
+        }
+      }
+    },
+    "ReviewType": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "reviewType": {
+          "type": "string"
+        }
+      }
+    },
+    "Reviewer": {
+      "properties": {
+        "role": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "AssignReviewers": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Reviewer"
+          }
+        }
+      }
+    },
+    "Id": {
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Email": {
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "ActiveAnnouncements": {
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "ActiveAnnouncementsWithPagination": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "activeAnnouncements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActiveAnnouncements"
+          }
+        },
+        "activeAnnouncementsCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "TotalAnnouncements": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "announcementData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnnouncementData"
+          }
+        },
+        "totalAnnouncements": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AnnouncementData": {
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Announcement": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "announcementData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnnouncementData"
+          }
+        }
+      }
+    },
+    "ProposalDataStatus": {
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "TimelineHistory": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "proposalData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProposalDataStatus"
+          }
+        }
+      }
+    },
+    "ContactUs": {
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "requestType": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ContactUsData": {
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "requestType": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ContactUsResponse": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/ContactUsData"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "InvestigatorHistory": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "proposalData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProposalData"
+          }
+        }
+      }
+    },
+    "Withdraw": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "withdrawComment": {
+          "type": "string"
+        }
+      }
+    },
+    "WithdrawProposal": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "proposalData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProposalData"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "TermExtension": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "extensionComment": {
+          "type": "string"
+        }
+      }
+    },
+    "DataRequest": {
+      "properties": {
+        "fullName": {
+          "type": "string"
+        },
+        "typeOfApplication": {
+          "type": "string"
+        },
+        "typeOfOrganization": {
+          "type": "string"
+        },
+        "typeOfOrganizationComment": {
+          "type": "string"
+        },
+        "individualStatus": {
+          "type": "string"
+        },
+        "individualStatusComment": {
+          "type": "string"
+        },
+        "countryOfOrigin": {
+          "type": "string"
+        },
+        "Phone": {
+          "type": "string"
+        },
+        "requestedDataOrInformation": {
+          "type": "string"
+        },
+        "purposeOfRequest": {
+          "type": "string"
+        },
+        "plannedOutputs": {
+          "type": "string"
+        },
+        "plannedOutputsComments": {
+          "type": "string"
+        },
+        "dataUtilization": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "agreement": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        },
+        "dateReceived": {
+          "type": "string"
+        },
+        "requestStatus": {
+          "type": "string"
+        },
+        "docketNo": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "DataRequestResponse": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/DataRequest"
+        }
+      }
+    },
+    "ReportURL": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "URL": {
+          "type": "string"
+        }
+      }
+    },
+    "Investigator": {
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "role": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isVerified": {
+          "type": "boolean"
+        },
+        "affilation": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "isProfileComplete": {
+          "type": "boolean"
+        },
+        "malingAddress": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "salutation": {
+          "type": "string"
+        },
+        "resetPassWordExpiry": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "InvestigatorData": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "investigator": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Investigator"
+          }
+        }
+      }
+    },
+    "InterUserWithSearchPagination": {
+      "properties": {
+        "pageNo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "search": {
+          "type": "string"
+        }
+      }
+    },
+    "SetPassword": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "Invite": {
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "role": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AddCommittee": {
+      "properties": {
+        "internalUserIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ResetPassword": {
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "currentPassword": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "CoordinatorChairPresent": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isCoordinatorPresent": {
+          "type": "boolean"
+        },
+        "isChairPresent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "MarkIncomplete": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "commentForMarkInComplete": {
+          "type": "string"
+        }
+      }
+    },
+    "ResponseByReviewer": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string"
+        }
+      }
+    },
+    "InternalUserData": {
+      "properties": {
+        "role": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isVerified": {
+          "type": "boolean"
+        },
+        "assignedProposal": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssignedProposal"
+          }
+        },
+        "chairSign": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "highestQualification": {
+          "type": "string"
+        },
+        "isProfileComplete": {
+          "type": "boolean"
+        },
+        "jobTitle": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "principleField": {
+          "type": "string"
+        },
+        "salutation": {
+          "type": "string"
+        },
+        "targetArticles": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "InternalUserId": {
+      "properties": {
+        "internalUserId": {
+          "type": "string"
+        }
+      }
+    },
+    "InternalUser": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "internalUserData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InternalUserData"
+          }
+        }
+      }
+    },
+    "Quarterly": {
+      "properties": {
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "Annual": {
+      "properties": {
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "UniversityUserWithPagination": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "internalUsersData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InternalUserData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CommitteMember": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "committeeMemberData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InternalUserData"
+          }
+        }
+      }
+    },
+    "ExternalReviewerData": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "externalReviewerData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InternalUserData"
+          }
+        }
+      }
+    },
+    "DeleteCommitteMember": {
+      "properties": {
+        "committeeMemberId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AssignedProposal": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "proposalTitle": {
+          "type": "string"
+        },
+        "investigatorId": {
+          "type": "string"
+        },
+        "reviewType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isReviewSubmitted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteCommitteeMemberResponse": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updatedCommitteeMember": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InternalUserData"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "RejectProposalAfterReview": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "rejectionComment": {
+          "type": "string"
+        }
+      }
+    },
+    "InvestigatorId": {
+      "properties": {
+        "investigatorId": {
+          "type": "string"
+        }
+      }
+    },
+    "ProposalId": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        }
+      }
+    },
+    "Coordinator": {
+      "properties": {
+        "role": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isVerified": {
+          "type": "boolean"
+        },
+        "chairSign": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "highestQualification": {
+          "type": "string"
+        },
+        "isProfileComplete": {
+          "type": "boolean"
+        },
+        "jobTitle": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "principleField": {
+          "type": "string"
+        },
+        "salutation": {
+          "type": "string"
+        },
+        "targetArticles": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UserData": {
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userData": {
+          "$ref": "#/definitions/Coordinator"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "SuccessResponse": {
+      "required": ["message"],
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "success"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/ProposalData"
+        }
+      }
+    },
+    "Registration": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Divya"
+        },
+        "middleName": {
+          "type": "string",
+          "example": "D"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "M"
+        },
+        "email": {
+          "type": "string",
+          "example": "investigator@yopmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "123456"
+        },
+        "roleId": {
+          "type": "integer",
+          "example": 6
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "investigator@yopmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "123456"
+        }
+      }
+    },
+    "MarkComplete": {
+      "properties": {
+        "proposalId": {
+          "type": "string"
+        },
+        "commentForMarkComplete": {
+          "type": "string"
+        }
+      }
+    },
+    "File": {
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string"
+        }
+      }
+    },
+    "FileList": {
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string"
+        }
+      }
+    },
+    "CurriculumVitae": {
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/File"
+        },
+        "fileList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileList"
+          }
+        }
+      }
+    },
+    "Summary_File": {
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string"
+        }
+      }
+    },
+    "Summary_FileList": {
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string"
+        }
+      }
+    },
+    "Summary": {
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/Summary_File"
+        },
+        "fileList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Summary_FileList"
+          }
+        }
+      }
+    },
+    "AssignedReviewers": {
+      "properties": {
+        "role": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Timeline": {
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "ProposalData": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "background": {
+          "type": "string"
+        },
+        "objectives": {
+          "type": "string"
+        },
+        "studyMethods": {
+          "type": "string"
+        },
+        "expectedOutcomes": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "string"
+        },
+        "isProposal": {
+          "type": "boolean"
+        },
+        "proposalId": {
+          "type": "string"
+        },
+        "isSubmitted": {
+          "type": "boolean"
+        },
+        "coinvestigator": {
+          "type": "array"
+        },
+        "dataCollection": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "humanSubjects": {
+          "type": "boolean"
+        },
+        "keyInstitution": {
+          "type": "string"
+        },
+        "multiCountryResearch": {
+          "type": "boolean"
+        },
+        "nationWideResearch": {
+          "type": "boolean"
+        },
+        "otherCommitte": {
+          "type": "boolean"
+        },
+        "otherResearchForm": {
+          "type": "string"
+        },
+        "primarySuperviser": {
+          "type": "array"
+        },
+        "researchDomain": {
+          "type": "string"
+        },
+        "researchField": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "studentResearch": {
+          "type": "boolean"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "fiji": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "age": {
+          "type": "boolean"
+        },
+        "anyTest": {
+          "type": "boolean"
+        },
+        "biologicalSamples": {
+          "type": "boolean"
+        },
+        "biosafeIssue": {
+          "type": "boolean"
+        },
+        "dependentRelation": {
+          "type": "boolean"
+        },
+        "distress": {
+          "type": "boolean"
+        },
+        "humanGenetic": {
+          "type": "boolean"
+        },
+        "identity": {
+          "type": "boolean"
+        },
+        "inducements": {
+          "type": "boolean"
+        },
+        "ionizationRadiation": {
+          "type": "boolean"
+        },
+        "mentalImpairment": {
+          "type": "boolean"
+        },
+        "minorityGroup": {
+          "type": "boolean"
+        },
+        "pregnant": {
+          "type": "boolean"
+        },
+        "reproductiveTech": {
+          "type": "boolean"
+        },
+        "sensitiveInfo": {
+          "type": "boolean"
+        },
+        "stemCell": {
+          "type": "boolean"
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conflict": {
+          "type": "boolean"
+        },
+        "levelRisk": {
+          "type": "string"
+        },
+        "multiInistitution": {
+          "type": "boolean"
+        },
+        "riskApply": {
+          "type": "string"
+        },
+        "curriculumVitae": {
+          "$ref": "#/definitions/CurriculumVitae"
+        },
+        "summary": {
+          "$ref": "#/definitions/Summary"
+        },
+        "commentForMarkComplete": {
+          "type": "string"
+        },
+        "isComplete": {
+          "type": "boolean"
+        },
+        "fullReviewEndDate": {
+          "type": "object"
+        },
+        "isUnderReview": {
+          "type": "boolean"
+        },
+        "reviewType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "assignedReviewers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssignedReviewers"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "investigatorId": {
+          "type": "string"
+        },
+        "timeline": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Timeline"
+          }
+        },
+        "_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

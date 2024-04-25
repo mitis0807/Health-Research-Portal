@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="icon" href="../src/assets/images/logo-white.png" /> -->
+<link rel="shortcut icon" href="https://www.fiji.gov.fj/icon/favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../src/css/loader.css"/> -->
+<meta charset="UTF-8">
+<title>MoH Fiji HRP</title> 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body style="overflow: visible;background-color: white;">
+<noscript>Your browser does not support JavaScript. Follow this link to enable js in your browser <a
+            href="https://www.enable-javascript.com/" target="_blank">Enable js</a></noscript>
+
+            <div id="root" >
+
+                    <div class="card"></div>
+                
+                </div>
+<!-- <script>
+if(navigator.cookieEnabled === true){
+}
+else if((navigator.cookieEnabled === false)){
+   
+document.getElementById("root").innerHTML= "<a href=https://support.google.com/accounts/answer/61416?co=GENIE.Platform%3DDesktop&hl=en target=_blank>Enable cookie </a>"
+}
+</script>          -->
+
+<script>
+function checkCookie(){
+var cookieEnabled = navigator.cookieEnabled;
+if (!cookieEnabled){ 
+document.cookie = "testcookie";
+cookieEnabled = document.cookie.indexOf("testcookie")!=-1;
+}
+return cookieEnabled || showCookieFail();
+}
+
+function showCookieFail(){
+    document.getElementById("root").innerHTML= "<span>Your browser does not support Cookie. Follow this link to enable cookie in your browser </span><a href=https://support.google.com/accounts/answer/61416?co=GENIE.Platform%3DDesktop&hl=en target=_blank>Enable cookie </a>"
+}
+
+
+// within a window load,dom ready or something like that place your:
+checkCookie();
+
+</script>
+
+<script type="text/javascript" src="/bundle.js"/>  
+</body>
+</html>

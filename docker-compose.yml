@@ -1,0 +1,30 @@
+version: "3"
+services:
+  service1:
+    container_name: who-hrp-container
+    image: who-hrp-image:V0.0.2  # goes to local registry
+    # restart: always
+    # build: https://wishtree_dprakash:dec-2018@bitbucket.org/wishtreewaveelectronics/wave-web-services.git#dockerRelease7
+    build: ./
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/public
+    ports:
+      - "1340:1340"
+      - "3006:3006"
+      - "9229"
+    links:
+      - mongo_api
+  mongo_api:
+    container_name: mongodb
+    image: mongo:4.2
+    # command: ["mongod", "--replSet" ,"rs0", "--bind_ip_all"]
+    volumes:
+      - dataVolume2:/data/db
+    ports:
+      - "27018:27017"
+volumes:
+   dataVolume2:
